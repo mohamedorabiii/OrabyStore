@@ -1,8 +1,6 @@
 @extends('layouts.parent')
 
 @section('title', 'Checkout')
-
-@section('content')
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -17,12 +15,8 @@
 		</div>
 	</div>
 	<!-- end breadcrumb section -->
+@section('content')
 
-	@php
-		$subtotal = $cartItems->sum(function ($item) {
-			return ($item->product->price ?? 0) * $item->quantity;
-		});
-	@endphp
 
 	<div class="checkout-section mt-150 mb-150">
 		<div class="container">
