@@ -2900,4 +2900,11 @@ table.order-details tbody td {
     font-family: 'Poppins', sans-serif;
 }
 
+/* Brand cards keep the same card style but show full logo without crop */
+.brand-card .category-img {
+  object-fit: contain;
+  background: #fff;
+  padding: 16px;
+}
+
 

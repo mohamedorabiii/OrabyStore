@@ -67,10 +67,13 @@
                                     <a href="{{ route('home') }}">Home</a>
                                 </li>
 
-                                <li class="@if (request()->routeIs('products')) current-list-item @endif"><a
+                                <li class="@if (request()->routeIs('products') || request()->routeIs('products.brand')) current-list-item @endif"><a
                                         href="{{ route('products') }}">Products</a></li>
                                 <li class="@if (request()->routeIs('categories')) current-list-item @endif"><a
                                         href="{{ route('categories') }}">Categories</a></li>
+                                <li class="@if (request()->routeIs('brands')) current-list-item @endif">
+                                    <a href="{{ route('brands') }}">Brands</a>
+                                </li>
                                 <li class="@if (request()->routeIs('contact')) current-list-item @endif"><a
                                     href="{{ route('contact') }}">Contact</a></li>
 

@@ -28,6 +28,7 @@ class ProductController extends Controller
         }
         
     }
+
     public function productdetails($id)
     {
         $product = Product::where('status', 1)
