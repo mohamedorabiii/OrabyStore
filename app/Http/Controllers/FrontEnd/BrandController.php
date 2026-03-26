@@ -11,7 +11,7 @@ class BrandController extends Controller
     public function index()
     {
       
-            $brands = Brand::where('status', 1)->get();
+            $brands = Brand::where('status', 1)->paginate(6);
             return view('brands', compact('brands'));
       
     }
@@ -26,7 +26,7 @@ class BrandController extends Controller
             ->whereHas('category', function ($query) {
                 $query->where('status', 1);
             })
-            ->get();
+            ->paginate(6);
 
         return view('products', compact('products'));
     }

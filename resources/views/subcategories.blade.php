@@ -29,7 +29,7 @@
             </div>
 
             <div class="row">
-                @foreach ($subcategries as $subcategory)
+                @foreach ($subcategories as $subcategory)
                     <div class="col-lg-4 col-md-6 text-center">
                         <a href="{{ route('products', $subcategory->id) }}" class="category-card-link">
                             <div class="category-card">
@@ -47,6 +47,38 @@
             </div>
         </div>
     </div>
+            <!-- pagination section -->
+            @if ($subcategories->hasPages())
+            <div class="row mt-50">
+                <div class="col-lg-12 text-center">
+                    <ul class="pagination" style="gap: 10px; justify-content: center; list-style: none; padding: 0;">
+                        {{-- Previous Page Link --}}
+                        @if ($subcategories->onFirstPage())
+                            <li style="display: inline-block;"><span style="padding: 8px 12px; background-color: #f5f5f5; color: #999; border-radius: 4px; cursor: not-allowed;">← Previous</span></li>
+                        @else
+                            <li style="display: inline-block;"><a href="{{ $subcategories->previousPageUrl() }}" style="padding: 8px 12px; background-color: #F28123; color: white; border-radius: 4px; text-decoration: none;">← Previous</a></li>
+                        @endif
+
+                        {{-- Page Numbers --}}
+                        @foreach ($subcategories->getUrlRange(1, $subcategories->lastPage()) as $page => $url)
+                            @if ($page == $subcategories->currentPage())
+                                <li style="display: inline-block;"><span style="padding: 8px 12px; background-color: #F28123; color: white; border-radius: 4px; font-weight: bold;">{{ $page }}</span></li>
+                            @else
+                                <li style="display: inline-block;"><a href="{{ $url }}" style="padding: 8px 12px; background-color: #f5f5f5; color: #333; border-radius: 4px; text-decoration: none;">{{ $page }}</a></li>
+                            @endif
+                        @endforeach
+
+                        {{-- Next Page Link --}}
+                        @if ($subcategories->hasMorePages())
+                            <li style="display: inline-block;"><a href="{{ $subcategories->nextPageUrl() }}" style="padding: 8px 12px; background-color: #F28123; color: white; border-radius: 4px; text-decoration: none;">Next →</a></li>
+                        @else
+                            <li style="display: inline-block;"><span style="padding: 8px 12px; background-color: #f5f5f5; color: #999; border-radius: 4px; cursor: not-allowed;">Next →</span></li>
+                        @endif
+                    </ul>
+                </div>
+            </div>
+            @endif
+            <!-- end pagination section -->
     <!-- end product section -->
 
 

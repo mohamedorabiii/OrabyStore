@@ -12,7 +12,7 @@ class SubCategoryController extends Controller
 {
     public function index($id = null)
     {
-        $subcategries = Subcategory::where('status',1)->get();
-        return view('subcategories', compact('subcategries'));
+        $subcategories = Subcategory::where('status',1)->paginate(6);
+        return view('subcategories', compact('subcategories'));
     }
 }

@@ -79,14 +79,20 @@ class ProductSeeder extends Seeder
         ];
 
         foreach ($products as $item) {
-            $subcategory = Subcategory::where('name_en', $item['subcategory'])->first();
-            $brand       = Brand::where('name_en', $item['brand'])->first();
+            $subcategory = !empty($item['subcategory'])
+                ? Subcategory::where('name_en', $item['subcategory'])->first()
+                : null;
+            $brand       = !empty($item['brand'])
+                ? Brand::where('name_en', $item['brand'])->first()
+                : null;
 
-            if (! $subcategory || ! $brand) {
+            $category = !empty($item['category'])
+                ? Category::where('name_en', $item['category'])->first()
+                : ($subcategory ? Category::find($subcategory->category_id) : null);
+
+            if (! $category) {
                 continue;
             }
-
-            $category = Category::find($subcategory->category_id);
 
             $prefix = strtoupper(substr(preg_replace('/[^A-Za-z]/', '', $item['name_en']), 0, 3));
             $code   = $prefix . '-' . strtoupper(Str::random(4));
@@ -94,19 +100,20 @@ class ProductSeeder extends Seeder
             Product::firstOrCreate(
                 [
                     'name_en'        => $item['name_en'],
-                    'subcategory_id' => $subcategory->id,
+                    'subcategory_id' => $subcategory?->id,
+                    'category_id'    => $category->id,
                 ],
                 [
                     'name_ar'        => $item['name_ar'],
-                    'desc_en' => $item['name_en'],
-                    'desc_ar' => $item['name_ar'],
+                    'desc_en'        => $item['name_en'],
+                    'desc_ar'        => $item['name_ar'],
                     'price'          => $item['price'],
                     'quantity'       => $item['quantity'],
                     'status'         => $item['status'],
                     'code'           => $code,
-                    'brand_id'       => $brand->id,
+                    'brand_id'       => $brand?->id,
                     'category_id'    => $category->id,
-                    'subcategory_id' => $subcategory->id,
+                    'subcategory_id' => $subcategory?->id,
                     'image'          => $item['image'],
                 ]
             );

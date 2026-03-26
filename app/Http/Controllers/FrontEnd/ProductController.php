@@ -15,15 +15,13 @@ class ProductController extends Controller
                 ->where('category_id', $id)
                 ->whereHas('category', function ($query) {
                     $query->where('status', 1);
-                })
-                ->get();
+                })->paginate(6);
             return view('products', compact('products'));
         } else {
             $products = Product::where('status', 1)
                 ->whereHas('category', function ($query) {
                     $query->where('status', 1);
-                })
-                ->get();
+                })->paginate(6);
             return view('products', compact('products'));
         }
         
