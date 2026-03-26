@@ -71,6 +71,8 @@
                                         href="{{ route('products') }}">Products</a></li>
                                 <li class="@if (request()->routeIs('categories')) current-list-item @endif"><a
                                         href="{{ route('categories') }}">Categories</a></li>
+                                <li class="@if (request()->routeIs('subcategories')) current-list-item @endif"><a
+                                        href="{{ route('subcategories') }}">Subcategories</a></li>
                                 <li class="@if (request()->routeIs('brands')) current-list-item @endif">
                                     <a href="{{ route('brands') }}">Brands</a>
                                 </li>

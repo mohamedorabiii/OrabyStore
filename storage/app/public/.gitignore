@@ -1,2 +1,2 @@
-*
-!.gitignore
+# Keep this file to preserve the directory in Git.
+# Uploaded files in this directory are intentionally tracked.

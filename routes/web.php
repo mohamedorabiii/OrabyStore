@@ -1,21 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-
-// Controllers
 use App\Http\Controllers\BackEnd\SocialController;
 use App\Http\Controllers\Backend\VerificationController;
 use App\Http\Controllers\CheckoutController;
-
-// Frontend Controllers
-use App\Http\Controllers\FrontEnd\{
-    HomeController,
-    ProductController,
-    CategoryController,
-    BrandController,
-    CartController
-};
+use App\Http\Controllers\FrontEnd\{ HomeController, ProductController, CategoryController, BrandController, CartController };
+use App\Http\Controllers\FrontEnd\SubCategoryController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +52,9 @@ Route::controller(ProductController::class)->prefix('products')->group(function 
 
 Route::controller(CategoryController::class)->prefix('categories')->group(function () {
     Route::get('/{id?}', 'index')->name('categories');
+});
+Route::controller(SubCategoryController::class)->prefix('subcategories')->group(function () {
+    Route::get('/{id?}', 'index')->name('subcategories');
 });
 
 Route::controller(BrandController::class)->group(function () {

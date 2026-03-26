@@ -52,7 +52,8 @@ class ProductForm
                     ]),
                 Select::make('subcategory_id')
                     ->label('Subcategory')
-                    ->relationship('subcategory', 'name_en'),
+                    ->relationship('subcategory', 'name_en')
+                    ->default(null),
                 Select::make('brand_id')
                     ->label('Brand')
                     ->relationship('brand', 'name_en')

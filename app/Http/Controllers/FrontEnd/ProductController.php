@@ -8,8 +8,8 @@ use App\Models\Product;
 class ProductController extends Controller
 {
     public function index($id = null)
-    {
-        //get all products from database and pass to view
+    { 
+        // If category ID is provided, filter products by that category; otherwise, show all active products
         if ($id) {
             $products = Product::where('status', 1)
                 ->where('category_id', $id)
