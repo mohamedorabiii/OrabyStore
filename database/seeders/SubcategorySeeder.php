@@ -21,18 +21,17 @@ class SubcategorySeeder extends Seeder
 
             // Clothes
             ['category' => 'Clothes', 'name_en' => 'T-Shirts', 'name_ar' => 'تيشيرتات', 'image' => 'subcategories/tshirts.jpg', 'status' => 1],
-
             // Computer Accessories
-            ['category' => 'Computer Accessories', 'name_en' => 'Mice',      'name_ar' => 'ماوسات',    'image' => 'subcategories/mice.jpg',      'status' => 1],
+            ['category' => 'Computer Accessories', 'name_en' => 'Mice',      'name_ar' => 'ماوسات',        'image' => 'subcategories/mice.jpg',      'status' => 1],
 
             // Bicycles
             ['category' => 'Bicycles', 'name_en' => 'Road Bikes',     'name_ar' => 'دراجات طريق',    'image' => 'subcategories/road-bikes.jpg',     'status' => 1],
 
             // Books
-            ['category' => 'Books', 'name_en' => 'Programming_books', 'name_ar' => 'كتب برمجة',      'image' => 'subcategories/programming-books.jpg', 'status' => 1],
+            ['category' => 'Books', 'name_en' => 'Programming-books', 'name_ar' => 'كتب برمجة',      'image' => 'subcategories/programming-books.jpg', 'status' => 1],
            
-            // Home 
-            ['category' => 'Home & Kitchen', 'name_en' => 'Furniture', 'name_ar' => 'أثاث', 'image' => 'subcategories/furniture.jpg', 'status' => 1],
+            // Home & Kitchen
+            ['category' => 'Home & Kitchen', 'name_en' => 'Furniture', 'name_ar' => 'أثاث',           'image' => 'subcategories/furniture.jpg',  'status' => 1],
         ];
         foreach ($subcategories as $item) {
             $category = Category::where('name_en', $item['category'])->first();
