@@ -42,7 +42,7 @@ Route::controller(HomeController::class)->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| 📦 Products & Categories
+| 📦 Products & Categories & Subcategory
 |--------------------------------------------------------------------------
 */
 Route::controller(ProductController::class)->prefix('products')->group(function () {
@@ -55,6 +55,7 @@ Route::controller(CategoryController::class)->prefix('categories')->group(functi
 });
 Route::controller(SubCategoryController::class)->prefix('subcategories')->group(function () {
     Route::get('/{id?}', 'index')->name('subcategories');
+    Route::get('/products/{id}', 'showProductsBySubcategory')->name('subcategories.products');
 });
 
 Route::controller(BrandController::class)->group(function () {

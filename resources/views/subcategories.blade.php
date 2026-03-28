@@ -31,7 +31,7 @@
             <div class="row">
                 @foreach ($subcategories as $subcategory)
                     <div class="col-lg-4 col-md-6 text-center">
-                        <a href="{{ route('products', $subcategory->id) }}" class="category-card-link">
+                        <a href="{{ route('subcategories.products', $subcategory->id) }}" class="category-card-link">
                             <div class="category-card">
                                 <img src="{{ asset('storage/' . $subcategory->image) }}"
                                      alt="{{ $subcategory->name_en }}"

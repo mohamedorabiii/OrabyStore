@@ -32,7 +32,7 @@ class ProductSeeder extends Seeder
             ['subcategory' => 'Road Bikes', 'brand' => 'Xiaomi', 'name_en' => 'Xiaomi HIMO R16 Road Bike', 'name_ar' => 'دراجة شاومي هيمو R16 طريق', 'image' => 'products/xiaomi-himo-r16-road-bike.jpg',        'price' => 499.00, 'quantity' => 20, 'status' => 1],
 
             // ─── Books > Programming ──────────────────────────────────────
-            ['subcategory' => 'Programming-books', 'brand' => 'Apple', 'name_en' => 'Clean Code by Robert Martin',     'name_ar' => 'كلين كود',                'image' => 'products/clean-code.jpg',    'price' => 35.00,  'quantity' => 80,  'status' => 1],
+            ['subcategory' => 'Programming-books', 'name_en' => 'Clean Code by Robert Martin',     'name_ar' => 'كلين كود',                'image' => 'products/clean-code.jpg',    'price' => 35.00,  'quantity' => 80,  'status' => 1],
 
             // ─── Home & Kitchen > Furniture ───────────────────────────────
             ['subcategory' => 'Furniture', 'brand' => 'zara',   'name_en' => 'Zara Home Linen Sofa 3-Seater',  'name_ar' => 'كنبة زارا هوم كتان 3 مقاعد', 'image' => 'products/zara-home-linen-sofa-3-seater.jpg',        'price' => 899.00, 'quantity' => 15,  'status' => 1],
