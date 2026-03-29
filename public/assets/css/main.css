@@ -613,7 +613,11 @@ nav.main-menu > ul li:last-child {
 
 .site-logo {
   float: left;
-  max-width: 150px;
+  max-width: 165px;
+}
+
+.site-logo a img {
+  display: block;
 }
 
 ul.sub-menu li:last-child {
@@ -673,7 +677,8 @@ nav.mean-nav > ul > li:first-child > a {
 }
 
 .site-logo {
-  padding: 6px 0;
+  padding: 0;
+  margin-top: -7px;
 }
 
 .top-header-area.sepherate-header ul li > a, .top-header-area.sepherate-header .header-icons a {
