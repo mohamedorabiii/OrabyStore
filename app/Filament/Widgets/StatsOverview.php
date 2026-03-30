@@ -13,10 +13,10 @@ class StatsOverview extends StatsOverviewWidget
     protected function getStats(): array
     {
         return [
-    Stat::make('Total Users', User::count())
-        ->description('Total Users')
-        ->icon('heroicon-o-users')
-        ->color('primary'),
+    Stat::make('Total Users', User::where('is_admin', 0)->count())
+    ->description('Total Users')
+    ->icon('heroicon-o-users')
+    ->color('primary'),
 
     Stat::make('Total Products', Product::count())
         ->description('Total Products')

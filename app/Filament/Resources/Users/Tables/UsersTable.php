@@ -46,11 +46,19 @@ class UsersTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
-                DeleteAction::make(),
+                DeleteAction::make()
+                ->visible(fn ($record) => !$record->is_admin),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                   DeleteBulkAction::make()
+                        ->action(function ($records) {
+                            $records->each(function ($record) {
+                                if (!$record->is_admin) {
+                                    $record->delete();
+                                }
+                            });
+                        }),
                 ]),
             ]);
     }

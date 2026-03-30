@@ -15,7 +15,8 @@ class EditUser extends EditRecord
     {
         return [
             ViewAction::make(),
-            DeleteAction::make(),
+            DeleteAction::make()
+                ->visible(fn() => !$this->record->is_admin),
         ];
     }
 }

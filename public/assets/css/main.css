@@ -522,6 +522,19 @@ a.read-more-btn:hover {
 # Header Styles
 
 ----------------------------------------------------------------------------- */
+.top-header-area {
+  background-color: #fff;
+  position: relative;
+  z-index: 999;
+  padding: 15px 0;
+}
+nav.main-menu ul li a {
+  color: #051922;
+}
+
+.header-icons a {
+  color: #051922;
+}
 ul.navbar-nav li.nav-item a.nav-link, ul.navbar-nav li.nav-item.active a.nav-link {
   color: #051922;
 }
@@ -558,7 +571,7 @@ nav.main-menu ul li {
 }
 
 nav.main-menu ul li a {
-  color: #fff;
+  color: #051922;
   font-weight: 700;
   display: block;
   padding: 15px;
@@ -1426,14 +1439,24 @@ body {
   letter-spacing: 7px;
   font-size: 15px;
 }
-
+.hero-area.home-hero {
+  height: 900px;
+  min-height: 620px;
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
 .hero-text h1 {
-  font-size: 64px;
+  font-size: 38px;
   font-weight: 700;
   line-height: 1.3;
   color: #fff;
 }
-
+.hero-area.home-hero:after {
+  background: rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
 .hero-area div {
   height: 100%;
 }

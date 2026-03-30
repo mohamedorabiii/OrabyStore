@@ -1,8 +1,8 @@
     <!-- hero area -->
-    <div class="hero-area hero-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9 offset-lg-2 text-center">
+    <div class="hero-area home-hero hero-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
                     <div class="hero-text">
                         <div class="hero-text-tablecell">
                             <p class="subtitle">Shop Anything You Need</p>
