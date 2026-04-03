@@ -1,295 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" href="{{ asset('new-template/img/favicon.png') }}" type="image/png" />
+    <title>@yield('title', 'OrabyStore')</title>
 
-    <meta name="description"
-        content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+    <link rel="stylesheet" href="{{ asset('new-template/css/bootstrap.css') }}" />
+    <link rel="stylesheet" href="{{ asset('new-template/vendors/linericon/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('new-template/css/font-awesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('new-template/css/themify-icons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('new-template/css/flaticon.css') }}" />
+    <link rel="stylesheet" href="{{ asset('new-template/vendors/owl-carousel/owl.carousel.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('new-template/vendors/lightbox/simpleLightbox.css') }}" />
+    <link rel="stylesheet" href="{{ asset('new-template/vendors/nice-select/css/nice-select.css') }}" />
+    <link rel="stylesheet" href="{{ asset('new-template/vendors/animate-css/animate.css') }}" />
+    <link rel="stylesheet" href="{{ asset('new-template/vendors/jquery-ui/jquery-ui.css') }}" />
+    <link rel="stylesheet" href="{{ asset('new-template/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('new-template/css/responsive.css') }}" />
 
-    <!-- title -->
-    <title>@yield('title')</title>
-
-    <!-- favicon -->
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
-    <!-- google font -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-    <!-- fontawesome -->
-    <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
-    <!-- owl carousel -->
-    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.css') }}">
-    <!-- magnific popup -->
-    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
-    <!-- animate css -->
-    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
-    <!-- mean menu css -->
-    <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.min.css') }}">
-    <!-- main style -->
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
-    <!-- responsive -->
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-
+    @stack('styles')
 </head>
-
 <body>
 
-    <!--PreLoader-->
-    <div class="loader">
-        <div class="loader-inner">
-            <div class="circle"></div>
-        </div>
-    </div>
-    <!--PreLoader Ends-->
+    @include('layouts.navbar')
 
-    <!-- header -->
-    <div class="top-header-area" id="sticker">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-sm-12 text-center">
-                    <div class="main-menu-wrap">
-                        <!-- logo -->
-                        <div class="site-logo">
-                            <a href="{{ route('home') }}">
-                                <img src="{{ asset('assets/img/logo.png') }}" alt="">
-                            </a>
-                        </div>
-                        <!-- logo -->
+    @yield('content')
 
-                        <!-- menu start -->
-                        <nav class="main-menu">
-                            <ul>
-                                <li class="@if (request()->routeIs('home')) current-list-item @endif">
-                                    <a href="{{ route('home') }}">Home</a>
-                                </li>
+    @include('layouts.footer')
 
-                                <li class="@if (request()->routeIs('products') || request()->routeIs('products.brand')) current-list-item @endif"><a
-                                        href="{{ route('products') }}">Products</a></li>
-                                <li class="@if (request()->routeIs('categories')) current-list-item @endif"><a
-                                        href="{{ route('categories') }}">Categories</a></li>
-                                <li class="@if (request()->routeIs('subcategories')) current-list-item @endif"><a
-                                        href="{{ route('subcategories') }}">Subcategories</a></li>
-                                <li class="@if (request()->routeIs('brands')) current-list-item @endif">
-                                    <a href="{{ route('brands') }}">Brands</a>
-                                </li>
-                                <li class="@if (request()->routeIs('contact')) current-list-item @endif"><a
-                                    href="{{ route('contact') }}">Contact</a></li>
+    <script src="{{ asset('new-template/js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('new-template/js/popper.js') }}"></script>
+    <script src="{{ asset('new-template/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('new-template/js/stellar.js') }}"></script>
+    <script src="{{ asset('new-template/vendors/lightbox/simpleLightbox.min.js') }}"></script>
+    <script src="{{ asset('new-template/vendors/nice-select/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('new-template/vendors/isotope/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('new-template/vendors/isotope/isotope-min.js') }}"></script>
+    <script src="{{ asset('new-template/vendors/owl-carousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('new-template/js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('new-template/vendors/counter-up/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('new-template/vendors/counter-up/jquery.counterup.js') }}"></script>
+    <script src="{{ asset('new-template/js/mail-script.js') }}"></script>
+    <script src="{{ asset('new-template/js/theme.js') }}"></script>
 
-                                <li>
-                                    <div class="header-icons d-flex align-items-center">
-
-                                        <a class="shopping-cart mr-3" href="{{ route('cart.index') }}">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </a>
-
-                                        @guest
-                                            <a href="{{ route('login') }}" class="mr-3">Login</a>
-                                            <a href="{{ route('register') }}" class="boxed-btn">Register</a>
-                                        @else
-                                    <li>
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                            aria-haspopup="true">
-                                            {{ Auth::user()->name }}
-                                        </a>
-                                        <ul class="sub-menu">
-                                            @if (Auth::user()->is_admin)
-                                                <li>
-                                                    <a href="{{ url('/admin') }}">Dashboard</a>
-                                                </li>
-                                            @endif
-                                            <li>
-                                                <a href="{{ route('orders.index') }}">My Orders</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('logout') }}"
-                                                    onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();">
-                                                    Logout
-                                                </a>
-                                            </li>
-                                        </ul>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </li>
-                                  @endguest
-
-                                </div>
-                              </li>
-                          </ul>
-                    </nav>
-                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                    <div class="mobile-menu"></div>
-                    <!-- menu end -->
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <!-- end header -->
-
-    <!-- search area -->
-    <div class="search-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <span class="close-btn"><i class="fas fa-window-close"></i></span>
-                    <div class="search-bar">
-                        <div class="search-bar-tablecell">
-                            <h3>Search For:</h3>
-                            <input type="text" placeholder="Keywords">
-                            <button type="submit">Search <i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end search area -->
-
-
-    <!-- Content -->
-    <div class="py-5">
-        <div class="container">
-            @yield('content')
-        </div>
-    </div>
-
-    <!-- footer -->
-    <div class="footer-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-box about-widget">
-                        <h2 class="widget-title">About us</h2>
-                        <p>I am Mohamed Alaa Oraby, a web developer
-                            passionate about creating
-                            modern and responsive websites with
-                            clean design.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-box get-in-touch">
-                        <h2 class="widget-title">Get in Touch</h2>
-                        <ul>
-                            <li>Beni Suef, Egypt</li>
-                            <li><a href="mailto:mosasameh123@gmail.com">mosasameh123@gmail.com</a></li>
-                            <li>+201281856592</li>
-                        </ul>
-                    </div>
-                </div>
-                {{-- <div class="col-lg-3 col-md-6">
-                    <div class="footer-box pages">
-                        <h2 class="widget-title">Pages</h2>
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="services.html">Shop</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div> --}}
-                {{-- <div class="col-lg-3 col-md-6">
-                    <div class="footer-box subscribe">
-                        <h2 class="widget-title">Subscribe</h2>
-                        <p>Subscribe to our mailing list to get the latest updates.</p>
-                        <form action="index.html">
-                            <input type="email" placeholder="Email">
-                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
-                        </form>
-                    </div>
-                </div> --}}
-            </div>
-        </div>
-    </div>
-    <!-- end footer -->
-
-    <!-- copyright -->
-    <div class="copyright">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-6 col-md-12">
-                    <p>
-                        © 2026 Mohamed Alaa Oraby, All Rights Reserved.
-                    </p>
-                </div>
-
-                <div class="col-lg-6 text-right col-md-12">
-                    <div class="social-icons">
-                        <ul>
-
-                            <!-- Facebook -->
-                            <li>
-                                <a href="https://www.facebook.com/share/1CfcigUQ94/" target="_blank">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-
-                            <!-- LinkedIn -->
-                            <li>
-                                <a href="https://www.linkedin.com/in/mohamedalaaorabii" target="_blank">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                            </li>
-
-                            <!-- GitHub -->
-                            <li>
-                                <a href="https://github.com/mohamedorabiii" target="_blank">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </li>
-
-                            <!-- WhatsApp -->
-                            <li>
-                                <a href="https://wa.me/201281856592" target="_blank">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                            </li>
-
-                            <!-- Email -->
-                            <li>
-                                <a href="mailto:mosasameh123@gmail.com">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- end copyright -->
-
-    <!-- jquery -->
-    <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
-    <!-- bootstrap -->
-    <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
-    <!-- count down -->
-    <script src="{{ asset('assets/js/jquery.countdown.js') }}"></script>
-    <!-- isotope -->
-    <script src="{{ asset('assets/js/jquery.isotope-3.0.6.min.js') }}"></script>
-    <!-- waypoints -->
-    <script src="{{ asset('assets/js/waypoints.js') }}"></script>
-    <!-- owl carousel -->
-    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-    <!-- magnific popup -->
-    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-    <!-- mean menu -->
-    <script src="{{ asset('assets/js/jquery.meanmenu.min.js') }}"></script>
-    <!-- sticker js -->
-    <script src="{{ asset('assets/js/sticker.js') }}"></script>
-    <!-- main js -->
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-
+    @stack('scripts')
 </body>
-
 </html>

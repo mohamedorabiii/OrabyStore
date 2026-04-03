@@ -1,111 +1,135 @@
-@extends('layouts.parent');
+@extends('layouts.parent')
 
-@section('title', 'Product Details')
+@section('title', 'Product Details - OrabyStore')
 
-<!-- breadcrumb-section -->
-<div class="breadcrumb-section breadcrumb-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 text-center">
-                <div class="breadcrumb-text">
-                    <p>See more Details</p>
-                    <h1>{{ $product->name_en }}</h1>
+@section('content')
+
+{{-- Banner --}}
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h2>Product Details</h2>
+                    <p>{{ $product->name_en }}</p>
+                </div>
+                <div class="page_link">
+                    <a href="{{ route('home') }}">Home</a>
+                    <a href="{{ route('products') }}">Products</a>
+                    <a href="#">{{ $product->name_en }}</a>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- end breadcrumb section -->
-<!-- single product -->
-<div class="single-product mt-150 mb-150">
+</section>
+
+{{-- Product Details --}}
+<div class="product_image_area section_gap">
     <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <div class="single-product-img">
-                    <img src="{{ asset('storage/' . $product->image) }}"class="product-details-img" alt="">
+        <div class="row s_product_inner">
+
+            {{-- Product Image --}}
+            <div class="col-lg-6">
+                <div class="s_product_img">
+                    <img class="img-fluid w-100"
+                        src="{{ asset('storage/' . $product->image) }}"
+                        alt="{{ $product->name_en }}" />
                 </div>
             </div>
-            <div class="col-md-7">
-                <div class="single-product-content">
+
+            {{-- Product Info --}}
+            <div class="col-lg-5 offset-lg-1">
+                <div class="s_product_text">
                     <h3>{{ $product->name_en }}</h3>
-                    <p class="single-product-pricing">Price: {{ $product->price }}$</p>
+                    <h2>${{ $product->price }}</h2>
+                    <ul class="list">
+                        <li>
+                            <a href="#">
+                                <span>Category</span> : {{ $product->category->name_en }}
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span>Availability</span> : In Stock
+                            </a>
+                        </li>
+                    </ul>
                     <p>{{ $product->desc_en }}</p>
-                    <div class="single-product-form">
-                        <form action="{{ route('cart.add') }}" method="post" class="d-inline-block">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input type="number" name="quantity" min="1" max="20" value="1" placeholder="0">
-                            <button type="submit" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                        </form>
-                        <h4>Category: {{ $product->category->name_en }}</h4>
-                    </div>
+
+                    <form action="{{ route('cart.add') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <div class="product_count">
+                            <label>Quantity:</label>
+                            <input type="number" name="quantity" min="1" max="20"
+                                value="1" class="input-text qty">
+                        </div>
+                        <div class="card_area mt-3">
+                            <button type="submit" class="main_btn">
+                                <i class="ti-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
-<!-- end single product -->
 
-<!-- more products -->
-<div class="more-products mb-150">
+{{-- Related Products --}}
+<section class="cat_product_area section_gap">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 text-center">
-                <div class="section-title">
-                    <h3><span class="orange-text">Related</span> Products</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet
-                        beatae optio.</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="main_title">
+                    <h2><span>Related</span> Products</h2>
                 </div>
             </div>
         </div>
+
         <div class="row">
-            @foreach ($related_products as $related_product)
-                <div class="col-lg-4 col-md-6 text-center">
-                    <div class="single-product-item">
-                        <div class="product-image">
-                            <a href="{{ route('product.details', $related_product->id) }}"><img
-                                    src="{{ asset('storage/' . $related_product->image) }}"class="related-product-img" alt=""></a>
+            @foreach ($related_products as $related)
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="single-product">
+                    <div class="product-img">
+                        <img class="img-fluid w-100"
+                            src="{{ asset('storage/' . $related->image) }}"
+                            alt="{{ $related->name_en }}" />
+                        <div class="p_icon">
+                            <a href="{{ route('product.details', $related->id) }}" title="View">
+                                <i class="ti-eye"></i>
+                            </a>
+                            <a href="#" class="cart-trigger"
+                               data-form="cart-form-{{ $related->id }}"
+                               title="Add to cart">
+                                <i class="ti-shopping-cart"></i>
+                            </a>
                         </div>
-                        <h3>{{$related_product->name_en}}</h3>
-                        <p class="product-price"> Price: {{$related_product->price}} $</p>
-                        <form action="{{route('cart.add')}}" method="POST" class="d-inline-block">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{$related_product->id}}">
-                            <input type="hidden" name="quantity" value="1">
-                            <button type="submit" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                        </form>
+                    </div>
+                    <div class="product-btm">
+                        <a href="{{ route('product.details', $related->id) }}" class="d-block">
+                            <h4>{{ $related->name_en }}</h4>
+                        </a>
+                        <div class="mt-3">
+                            <span class="mr-4">${{ $related->price }}</span>
+                        </div>
                     </div>
                 </div>
+
+                <form id="cart-form-{{ $related->id }}"
+                      action="{{ route('cart.add') }}"
+                      method="POST"
+                      style="display:none;">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $related->id }}">
+                    <input type="hidden" name="quantity" value="1">
+                </form>
+
+            </div>
             @endforeach
         </div>
     </div>
-</div>
-<!-- end more products -->
+</section>
 
-<!-- logo carousel -->
-<div class="logo-carousel-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="logo-carousel-inner">
-                    <div class="single-logo-item">
-                        <img src="{{ asset('assets/img/company-logos/1.png') }}" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="{{ asset('assets/img/company-logos/2.png') }}" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="{{ asset('assets/img/company-logos/3.png') }}" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="{{ asset('assets/img/company-logos/4.png') }}" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="{{ asset('assets/img/company-logos/5.png') }}" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end logo carousel -->
+@endsection

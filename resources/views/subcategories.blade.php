@@ -1,85 +1,94 @@
 @extends('layouts.parent')
 
-@section('title', 'subcategories')
-	<!-- breadcrumb-section -->
-	<div class="breadcrumb-section breadcrumb-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="breadcrumb-text">
-						<p>Fast and Secure</p>
-						<h1>Subcategories</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end breadcrumb section -->
-@section('content')
-    <!-- product section -->
-    <div class="product-section mt-150 mb-150">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2 text-center">
-                    <div class="section-title">
-                        <h3><span class="orange-text">Our</span> Subcategories</h3>
-                        <p></p>
-                    </div>
-                </div>
-            </div>
+@section('title', 'Subcategories - OrabyStore')
 
-            <div class="row">
-                @foreach ($subcategories as $subcategory)
-                    <div class="col-lg-4 col-md-6 text-center">
-                        <a href="{{ route('subcategories.products', $subcategory->id) }}" class="category-card-link">
-                            <div class="category-card">
-                                <img src="{{ asset('storage/' . $subcategory->image) }}"
-                                     alt="{{ $subcategory->name_en }}"
-                                     class="category-img">
-                                <div class="category-card-body">
-                                    <h3>{{ $subcategory->name_en }}</h3>
-                                    <span>Browse Products &rarr;</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
+@section('content')
+
+{{-- Banner --}}
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h2>Subcategories</h2>
+                    <p>Browse all our subcategories</p>
+                </div>
+                <div class="page_link">
+                    <a href="{{ route('home') }}">Home</a>
+                    <a href="{{ route('subcategories') }}">Subcategories</a>
+                </div>
             </div>
         </div>
     </div>
-            <!-- pagination section -->
-            @if ($subcategories->hasPages())
-            <div class="row mt-50">
-                <div class="col-lg-12 text-center">
-                    <ul class="pagination" style="gap: 10px; justify-content: center; list-style: none; padding: 0;">
-                        {{-- Previous Page Link --}}
-                        @if ($subcategories->onFirstPage())
-                            <li style="display: inline-block;"><span style="padding: 8px 12px; background-color: #f5f5f5; color: #999; border-radius: 4px; cursor: not-allowed;">← Previous</span></li>
-                        @else
-                            <li style="display: inline-block;"><a href="{{ $subcategories->previousPageUrl() }}" style="padding: 8px 12px; background-color: #F28123; color: white; border-radius: 4px; text-decoration: none;">← Previous</a></li>
-                        @endif
+</section>
 
-                        {{-- Page Numbers --}}
-                        @foreach ($subcategories->getUrlRange(1, $subcategories->lastPage()) as $page => $url)
-                            @if ($page == $subcategories->currentPage())
-                                <li style="display: inline-block;"><span style="padding: 8px 12px; background-color: #F28123; color: white; border-radius: 4px; font-weight: bold;">{{ $page }}</span></li>
-                            @else
-                                <li style="display: inline-block;"><a href="{{ $url }}" style="padding: 8px 12px; background-color: #f5f5f5; color: #333; border-radius: 4px; text-decoration: none;">{{ $page }}</a></li>
-                            @endif
-                        @endforeach
-
-                        {{-- Next Page Link --}}
-                        @if ($subcategories->hasMorePages())
-                            <li style="display: inline-block;"><a href="{{ $subcategories->nextPageUrl() }}" style="padding: 8px 12px; background-color: #F28123; color: white; border-radius: 4px; text-decoration: none;">Next →</a></li>
-                        @else
-                            <li style="display: inline-block;"><span style="padding: 8px 12px; background-color: #f5f5f5; color: #999; border-radius: 4px; cursor: not-allowed;">Next →</span></li>
-                        @endif
-                    </ul>
+{{-- Subcategories Section --}}
+<section class="cat_product_area section_gap">
+    <div class="container">
+<div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="main_title">
+                    <h2><span>Our</span> Subcategories</h2>
                 </div>
             </div>
-            @endif
-            <!-- end pagination section -->
-    <!-- end product section -->
+        </div>
 
+        <div class="row">
+            @foreach ($subcategories as $subcategory)
+            <div class="col-lg-4 col-md-6 mb-4 text-center">
+                <div class="single-product">
+                    <div class="product-img">
+                        <img class="img-fluid w-100"
+                            src="{{ asset('storage/' . $subcategory->image) }}"
+                            alt="{{ $subcategory->name_en }}" />
+                        <div class="p_icon">
+                            <a href="{{ route('subcategories.products', $subcategory->id) }}" title="View">
+                                <i class="ti-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-btm text-left">
+                        <a href="{{ route('subcategories.products', $subcategory->id) }}" class="d-block">
+                            <h4>{{ $subcategory->name_en }}</h4>
+                             <p class="browse-link">Browse Products &rarr;</p>
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+        {{-- Pagination --}}
+        @if ($subcategories->hasPages())
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <ul class="pagination-list">
+                    @if ($subcategories->onFirstPage())
+                        <li><span class="main_btn btn-disabled">← Prev</span></li>
+                    @else
+                        <li><a href="{{ $subcategories->previousPageUrl() }}" class="main_btn">← Prev</a></li>
+                    @endif
+
+                    @foreach ($subcategories->getUrlRange(1, $subcategories->lastPage()) as $page => $url)
+                        @if ($page == $subcategories->currentPage())
+                            <li><span class="main_btn">{{ $page }}</span></li>
+                        @else
+                            <li><a href="{{ $url }}" class="main_btn btn-outline-page">{{ $page }}</a></li>
+                        @endif
+                    @endforeach
+
+                    @if ($subcategories->hasMorePages())
+                        <li><a href="{{ $subcategories->nextPageUrl() }}" class="main_btn">Next →</a></li>
+                    @else
+                        <li><span class="main_btn btn-disabled">Next →</span></li>
+                    @endif
+                </ul>
+            </div>
+        </div>
+        @endif
+
+    </div>
+</section>
 
 @endsection

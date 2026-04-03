@@ -40,6 +40,11 @@ class CheckoutController extends Controller
   public function placeOrder(PlaceOrderRequest $request)
    {
     $user = Auth::user();
+
+    if ($user->is_admin) {
+        return redirect()->route('cart.index')->with('error', 'Admins are not allowed to place orders.');
+    }
+
     $cartItems = Cart::where('user_id', $user->id)
         ->whereHas('product', function ($query) {
             $query->where('status', 1)

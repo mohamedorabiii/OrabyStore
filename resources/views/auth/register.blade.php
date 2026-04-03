@@ -1,78 +1,81 @@
 @extends('layouts.parent')
 
-@section('title', 'Register')
+@section('title', 'Register - OrabyStore')
 
 @section('content')
-<div class="product-section mt-150 mb-150">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 text-center">
-                <div class="section-title">
-                    <h3><span class="orange-text">{{ __('Create') }}</span> {{ __('Account') }}</h3>
-                    <p>{{ __('Register now to start shopping and save your orders.') }}</p>
-                </div>
-            </div>
-        </div>
 
+
+
+{{-- Register Section --}}
+<section class="section_gap">
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-8">
-                <div class="single-product-item p-4">
+            <div class="col-lg-5 col-md-8">
+                <div class="login-card">
+
+                    <h3 class="text-center mb-2">Create Account</h3>
+                    <p class="text-center mb-4">Register now to start shopping and save your orders.</p>
+
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="form-group mb-3 text-left">
-                            <label for="name">{{ __('Name') }}</label>
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <div class="form-group mb-3">
+                            <label>Name</label>
+                            <input type="text" name="name"
+                                class="form-control @error('name') is-invalid @enderror"
+                                value="{{ old('name') }}" required autofocus>
                             @error('name')
-                                <span class="invalid-feedback d-block" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                <span class="invalid-feedback d-block"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
 
-                        <div class="form-group mb-3 text-left">
-                            <label for="email">{{ __('Email Address') }}</label>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <div class="form-group mb-3">
+                            <label>Email Address</label>
+                            <input type="email" name="email"
+                                class="form-control @error('email') is-invalid @enderror"
+                                value="{{ old('email') }}" required>
                             @error('email')
-                                <span class="invalid-feedback d-block" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                <span class="invalid-feedback d-block"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
 
-                        <div class="form-group mb-3 text-left">
-                            <label for="password">{{ __('Password') }}</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                        <div class="form-group mb-3">
+                            <label>Password</label>
+                            <input type="password" name="password"
+                                class="form-control @error('password') is-invalid @enderror"
+                                required>
                             @error('password')
-                                <span class="invalid-feedback d-block" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                <span class="invalid-feedback d-block"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
 
-                        <div class="form-group mb-4 text-left">
-                            <label for="password-confirm">{{ __('Confirm Password') }}</label>
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                        <div class="form-group mb-4">
+                            <label>Confirm Password</label>
+                            <input type="password" name="password_confirmation"
+                                class="form-control" required>
                         </div>
 
-                        <button type="submit" class="boxed-btn w-100 text-center border-0">
-                            {{ __('Register') }}
-                        </button>
+                        <button type="submit" class="main_btn">REGISTER</button>
 
-                        @if (Route::has('login'))
-                            <div class="mt-4 text-left">
-                                <a href="{{ route('login') }}">{{ __('Already have an account? Login') }}</a>
-                            </div>
-                        @endif
-                        
                     </form>
-                     <!-- Google Button -->
-                        <a href="{{ url('/auth/google/redirect') }}" class="btn btn-danger w-100 mb-2">
-                            <i class="fab fa-google me-2"></i> Register with Google
-                        </a>
+
+                    <div class="divider">─── OR ───</div>
+
+                    <a href="{{ url('/auth/google/redirect') }}" class="google-btn">
+                        <i class="fa fa-google"></i> Register with Google
+                    </a>
+
+                    @if(Route::has('login'))
+                    <p class="register-link">
+                        Already have an account?
+                        <a href="{{ route('login') }}">Login</a>
+                    </p>
+                    @endif
+
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+
 @endsection

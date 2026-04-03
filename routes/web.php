@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\BackEnd\SocialController;
 use App\Http\Controllers\Backend\VerificationController;
 use App\Http\Controllers\CheckoutController;
@@ -81,7 +82,7 @@ Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(f
 | 💳 Checkout & Orders
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'preventAdmin'])->group(function () {
 
     Route::controller(CheckoutController::class)->group(function () {
         Route::get('/checkout', 'index')->name('checkout.index');
@@ -93,7 +94,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| 📞 Static Pages
+| 📞 Contact Pages
 |--------------------------------------------------------------------------
 */
-Route::view('/contact', 'contact')->name('contact');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
