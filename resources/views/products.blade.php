@@ -38,24 +38,24 @@
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="single-product">
                             <div class="product-img">
-                                <img class="img-fluid w-100" src="{{ asset('storage/' . $product->image) }}"
+                                <img class="related-product-img" src="{{ asset('storage/' . $product->image) }}"
                                     alt="{{ $product->name_en }}" />
                                 <div class="p_icon">
                                     <a href="{{ route('product.details', $product->id) }}" title="View">
                                         <i class="ti-eye"></i>
                                     </a>
 
-                                    <<a href="#" class="cart-trigger" data-form="cart-form-{{ $product->id }}"
+                                    <a href="#" class="cart-trigger" data-form="cart-form-{{ $product->id }}"
                                         title="Add to cart">
                                         <i class="ti-shopping-cart"></i>
-                                        </a>
+                                    </a>
 
-                                        <form id="cart-form-{{ $product->id }}" action="{{ route('cart.add') }}"
-                                            method="POST" style="display:none;">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                            <input type="hidden" name="quantity" value="1">
-                                        </form>
+                                    <form id="cart-form-{{ $product->id }}" action="{{ route('cart.add') }}"
+                                        method="POST" style="display:none;">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <input type="hidden" name="quantity" value="1">
+                                    </form>
                                 </div>
                             </div>
                             <div class="product-btm">

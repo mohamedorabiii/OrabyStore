@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Models;
-
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Category extends Model
 {
+    use Searchable;
     protected $fillable = [
         'name_en',
         'name_ar',
@@ -29,5 +30,14 @@ class Category extends Model
                 Storage::disk('public')->delete($category->image);
             }
         });
+    }
+    public function toSearchableArray(): array
+    {
+        return [
+            'id'      => $this->id,
+            'name_en' => $this->name_en,
+            'name_ar' => $this->name_ar,
+            'status'  => $this->status,
+        ];
     }
 }

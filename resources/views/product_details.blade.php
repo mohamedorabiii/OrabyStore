@@ -31,7 +31,7 @@
             {{-- Product Image --}}
             <div class="col-lg-6">
                 <div class="s_product_img">
-                    <img class="img-fluid w-100"
+                    <img class="product-details-img"
                         src="{{ asset('storage/' . $product->image) }}"
                         alt="{{ $product->name_en }}" />
                 </div>
@@ -93,7 +93,7 @@
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="single-product">
                     <div class="product-img">
-                        <img class="img-fluid w-100"
+                        <img class="related-product-img"
                             src="{{ asset('storage/' . $related->image) }}"
                             alt="{{ $related->name_en }}" />
                         <div class="p_icon">

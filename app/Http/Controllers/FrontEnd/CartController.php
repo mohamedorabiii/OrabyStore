@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddToCartRequest;
+use App\Http\Requests\UpdateCartRequest;
 use App\Models\Cart;
 use App\Services\CartService;
 use Illuminate\Http\Request;
@@ -44,9 +45,8 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success', 'Product added to cart successfully✅.');
     }
 
-    public function updateCart(Request $request, Cart $cart)
+    public function updateCart(UpdateCartRequest $request, Cart $cart)
     {
-        $request->validate(['quantity' => 'required|integer|min:1|max:20']);
         $this->cartService->updateCart($cart, $request->quantity);
 
         return redirect()->route('cart.index')->with('success', 'Cart updated successfully✅.');

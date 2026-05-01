@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Models;
-
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
-    use HasFactory;
+
+    use HasFactory, Searchable;
     protected $fillable = [
         'name_en',
         'name_ar',
@@ -42,5 +43,17 @@ class Product extends Model
                 Storage::disk('public')->delete($product->image);
             }
         });
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id'      => $this->id,
+            'name_en' => $this->name_en,
+            'name_ar' => $this->name_ar,
+            'desc_en' => $this->desc_en,
+            'desc_ar' => $this->desc_ar,
+            'status'  => $this->status,
+        ];
     }
 }

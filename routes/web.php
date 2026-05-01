@@ -8,6 +8,7 @@ use App\Http\Controllers\FrontEnd\{ HomeController, ProductController, CategoryC
 use App\Http\Controllers\FrontEnd\SubCategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,3 +100,8 @@ Route::middleware(['auth', 'verified', 'preventAdmin'])->group(function () {
 */
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+
+
+////////////////// Search Routes/////////////////
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::get('/search/live', [SearchController::class, 'live'])->name('search.live');

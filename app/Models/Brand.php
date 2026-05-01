@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Models;
-
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Brand extends Model
 {
+    use Searchable;
     protected $fillable = [
         'name_en',
         'name_ar',
@@ -25,6 +26,14 @@ class Brand extends Model
             }
         });
     }
-
+    public function toSearchableArray(): array
+    {
+        return [
+            'id'      => $this->id,
+            'name_en' => $this->name_en,
+            'name_ar' => $this->name_ar,
+            'status'  => $this->status,
+        ];
+    }
     
 }

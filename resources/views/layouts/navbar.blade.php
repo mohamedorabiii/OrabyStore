@@ -31,8 +31,8 @@
                     <img src="{{ asset('new-template/img/logo.png') }}" alt="OrabyStore" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -45,7 +45,8 @@
                                 <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
                                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                                 </li>
-                                <li class="nav-item submenu dropdown {{ request()->routeIs('products*', 'categories*', 'subcategories*', 'brands*') ? 'active' : '' }}">
+                                <li
+                                    class="nav-item submenu dropdown {{ request()->routeIs('products*', 'categories*', 'subcategories*', 'brands*') ? 'active' : '' }}">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Shop</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
@@ -70,8 +71,23 @@
 
                         <div class="col-lg-5 pr-0">
                             <ul class="nav navbar-nav navbar-right right_nav pull-right">
-                                <li class="nav-item">
-                                    <a href="#" class="icons"><i class="ti-search"></i></a>
+                                <li class="nav-item search-nav-item">
+                                    <div class="search-wrapper" data-live-search-url="{{ route('search.live') }}" data-search-url="{{ route('search') }}">
+                                        <form action="{{ route('search') }}" method="GET">
+                                            <input type="text" id="live-search-input" name="q"
+                                                placeholder="Search..." autocomplete="off"
+                                                value="{{ request('q') }}" />
+                                            <button type="submit">
+                                                <i class="ti-search"></i>
+                                            </button>
+                                        </form>
+                                        <div id="search-dropdown">
+                                            <div id="search-results"></div>
+                                            <div id="search-all">
+                                                <a href="#" id="search-all-link">View all results</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('cart.index') }}" class="icons">
@@ -88,16 +104,17 @@
                                             <i class="ti-user"></i> {{ Auth::user()->name }}
                                         </a>
                                         <ul class="user-dropdown">
-                                            @if(Auth::user()->is_admin)
+                                            @if (Auth::user()->is_admin)
                                                 <li><a href="{{ url('/admin') }}">Dashboard</a></li>
                                             @endif
                                             <li><a href="{{ route('orders.index') }}">My Orders</a></li>
                                             <li>
                                                 <a href="{{ route('logout') }}"
-                                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                     Logout
                                                 </a>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                    style="display:none;">
                                                     @csrf
                                                 </form>
                                             </li>
