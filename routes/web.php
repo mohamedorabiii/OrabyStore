@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\SearchController;
 use App\Http\Controllers\Backend\SocialController;
 use App\Http\Controllers\Backend\VerificationController;
 use App\Http\Controllers\CheckoutController;
@@ -8,7 +10,6 @@ use App\Http\Controllers\FrontEnd\{ HomeController, ProductController, CategoryC
 use App\Http\Controllers\FrontEnd\SubCategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,3 +106,9 @@ Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.
 ////////////////// Search Routes/////////////////
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/search/live', [SearchController::class, 'live'])->name('search.live');
+
+
+
+Route::post('/email/verify', [VerificationController::class, 'verify'])->name('verification.verify.otp');
+Route::get('/password/reset/{token?}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');

@@ -4,9 +4,6 @@
 
 @section('content')
 
-
-
-{{-- Forgot Password Section --}}
 <section class="section_gap">
     <div class="container">
         <div class="row justify-content-center">
@@ -14,10 +11,14 @@
                 <div class="login-card">
 
                     <h3 class="text-center mb-2">Forgot Password?</h3>
-                    <p class="text-center mb-4">Enter your email and we will send you a reset link.</p>
+                    <p class="text-center mb-4">Enter your email and we will send you a verification code.</p>
 
                     @if(session('status'))
-                    <div class="alert alert-success mb-4">{{ session('status') }}</div>
+                        <div class="alert alert-success mb-4">{{ session('status') }}</div>
+                    @endif
+
+                    @if($errors->any())
+                        <div class="alert alert-danger mb-4">{{ $errors->first() }}</div>
                     @endif
 
                     <form method="POST" action="{{ route('password.email') }}">
@@ -34,13 +35,13 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="main_btn">
-                            Send Password Reset Link
+                        <button type="submit" class="main_btn w-100">
+                            Send Verification Code
                         </button>
 
                     </form>
 
-                    <p class="register-link">
+                    <p class="register-link mt-3 text-center">
                         Remember your password?
                         <a href="{{ route('login') }}">Back to Login</a>
                     </p>

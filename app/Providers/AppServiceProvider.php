@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Providers;
-
+use App\Listeners\SendOtpOnRegister;
+use Illuminate\Auth\Events\Registered;
 use App\Listeners\MergeGuestCart;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Event;
@@ -14,5 +15,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Event::listen(Login::class, MergeGuestCart::class);
+        Event::listen(Registered::class, SendOtpOnRegister::class);
     }
 }

@@ -11,12 +11,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements FilamentUser, MustVerifyEmail
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens, HasFactory, Notifiable;
-
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->is_admin == 1;
@@ -35,6 +32,8 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'provider_id',
         'is_admin',
         'email_verified_at',
+        'otp_code',
+        'otp_expires_at',
     ];
 
     /**
@@ -57,4 +56,13 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'password' => 'hashed',
         'is_admin' => 'boolean',
     ];
+
+    public function sendEmailVerificationNotification()
+    {
+        app(\App\Services\OtpService::class)->send($this);
+    }
+    public function sendPasswordResetNotification($token): void
+{
+    app(\App\Services\OtpService::class)->send($this);
+}
 }

@@ -3,27 +3,39 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ResetsPasswords;
+use App\Services\AuthService;
+use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling password reset requests
-    | and uses a simple trait to include this behavior. You're free to
-    | explore this trait and override any methods you wish to tweak.
-    |
-    */
+    public function __construct(protected AuthService $authService) {}
 
-    use ResetsPasswords;
+    public function showResetForm(Request $request)
+    {
+        return view('auth.passwords.reset', [
+            'email' => $request->email,
+        ]);
+    }
 
-    /**
-     * Where to redirect users after resetting their password.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
+    public function reset(Request $request)
+    {
+        $request->validate([
+            'email'    => 'required|email|exists:users,email',
+            'code'     => 'required|string|size:6',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $reset = $this->authService->resetPassword(
+            $request->email,
+            $request->code,
+            $request->password
+        );
+
+        if (!$reset) {
+            return back()->withErrors(['code' => 'Invalid or expired code.']);
+        }
+
+        return redirect()->route('login')
+            ->with('success', 'Password reset successfully!');
+    }
 }
